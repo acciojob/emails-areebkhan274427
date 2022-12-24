@@ -20,8 +20,8 @@ class mail
         return sender;
     }
 
-    public mail(Date data, String sender, String message) {
-        this.date = data;
+    public mail(Date date, String sender, String message) {
+        this.date = date;
         this.sender = sender;
         this.message = message;
     }
@@ -31,12 +31,14 @@ public class Gmail extends Email {
     int inboxCapacity; //maximum number of mails inbox can store
     //Inbox: Stores mails. Each mail has date (Date), sender (String), message (String). It is guaranteed that message is distinct for all mails.
     //Trash: Stores mails. Each mail has date (Date), sender (String), message (String)
-    Deque<mail> inbox=new LinkedList<>();
-    ArrayList<mail> trash=new ArrayList<>();
+    Deque<mail> inbox;
+    ArrayList<mail> trash;
 
     public Gmail(String emailId, int inboxCapacity) {
         super(emailId);
         this.inboxCapacity=inboxCapacity;
+        inbox=new LinkedList<>();
+        trash=new ArrayList<>();
     }
 
     public void receiveMail(Date date, String sender, String message){
@@ -62,7 +64,6 @@ public class Gmail extends Email {
             if(obj.getMessage().equals(message))
             {
                 it.remove();
-                break;
             }
         }
 
