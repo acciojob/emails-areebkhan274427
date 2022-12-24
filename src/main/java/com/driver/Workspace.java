@@ -14,7 +14,7 @@ class EndSorter implements Comparator<Meeting>
     public int compare(Meeting o1, Meeting o2)
     {
         //o1.start < o2.end
-        if (o1.getStartTime().isBefore(o2.getEndTime()))
+        if (o1.getEndTime().isBefore(o2.getEndTime()))
             return -1;
 
         //o1.end > o2.end
@@ -59,15 +59,15 @@ public class Workspace extends Gmail{
         // First meeting is always selected
        // m.add(calendar.get(0).pos);
 
-        Time prev_end = Time.valueOf(calendar.get(0).getEndTime());
+        LocalTime prev_end = calendar.get(0).getEndTime();
 
         // Checking if meetings can take place or not.
         for(int i = 1; i < calendar.size(); i++)
         {
-            if (calendar.get(i).getStartTime().isAfter(prev_end.toLocalTime()))
+            if (calendar.get(i).getStartTime().isAfter(prev_end))
             {
                 //m.add(meet.get(i).pos);
-                prev_end = Time.valueOf(calendar.get(i).getEndTime());
+                prev_end = calendar.get(i).getEndTime();
                 c++;
             }
         }
