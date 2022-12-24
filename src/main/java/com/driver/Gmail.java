@@ -12,6 +12,14 @@ class mail
         return message;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public String getSender() {
+        return sender;
+    }
+
     public mail(Date data, String sender, String message) {
         this.date = data;
         this.sender = sender;
@@ -88,8 +96,6 @@ public class Gmail extends Email {
             if(obj.date.getTime()>=start.getTime() && obj.date.getTime()<=end.getTime())
            {
                count++;
-           }else{
-               break;
            }
 
         }
