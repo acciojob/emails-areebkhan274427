@@ -63,7 +63,9 @@ public class Gmail extends Email {
             mail obj = it.next();
             if(obj.getMessage().equals(message))
             {
+                trash.add(obj);
                 it.remove();
+                break;
             }
         }
 
